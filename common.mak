@@ -2,9 +2,9 @@
 
 # defining RELEASE compiles optimized
 # defining NODEBUG omits debugging information
-# defining FINAL implies release, and also removes debugging strings from client executable 
+# defining RETAIL implies release, and also removes debugging strings from client executable 
 
-!ifdef FINAL
+!ifdef RETAIL
 RELEASE = 1
 NODPRINTFS = 1
 !endif
@@ -44,10 +44,10 @@ CLUBDIR     = $(TOPDIR)\club
 
 # 3rd party libraries
 EXTERNALDIR = $(TOPDIR)\external
-WAVEMIXDIR  = $(EXTERNALDIR)\wavemix
 LIBARCHIVEDIR = $(EXTERNALDIR)\libarchive
 LIBPNGDIR   = $(EXTERNALDIR)\libpng
 ZLIBDIR     = $(EXTERNALDIR)\zlib
+OPENALDIR   = $(EXTERNALDIR)\openal-soft\openal-soft-1.24.3-bin
 
 BLAKBINDIR = $(TOPDIR)\bin
 BLAKLIBDIR = $(TOPDIR)\lib
@@ -73,7 +73,7 @@ PALETTEFILE = $(TOPDIR)\blakston.pal
 
 CCOMMONFLAGS = -nologo -DBLAK_PLATFORM_WINDOWS -DWIN32 \
              /wd4996 /wd4312 \
-	     -TP -WX -GR- -EHsc- -MP -MT -Zi
+	     -TP -WX -GR- -EHsc- -MP -MT -Zi -std:c++20
 
 CNORMALFLAGS = $(CCOMMONFLAGS) -W2 /Ox
 CDEBUGFLAGS = $(CCOMMONFLAGS) -W3 -DBLAKDEBUG
@@ -131,4 +131,4 @@ MAKEBGF = $(BLAKBINDIR)\makebgf
 # environment variables for compiler
 
 LIB = $(LIB);$(BLAKLIBDIR)
-INCLUDE = $(INCLUDE);$(BLAKINCLUDEDIR);$(LIBARCHIVEDIR);$(LIBPNGDIR);$(ZLIBDIR)
+INCLUDE = $(INCLUDE);$(BLAKINCLUDEDIR);$(LIBARCHIVEDIR);$(LIBPNGDIR);$(ZLIBDIR);$(OPENALDIR)\include
